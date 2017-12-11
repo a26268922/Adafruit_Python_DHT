@@ -73,6 +73,9 @@ while True:
       h0, t0= Adafruit_DHT.read_retry(sensor, pin)
       if humidity is not None and temperature is not None:
             print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
+            payload = {"datapoints":[{"dataChnId":"Humidity","values":{"value":h0}},
+	              {"dataChnId":"Temperature","values":{"value":t0}}]} 
+	    post_to_mcs(payload)
 
             time.sleep(10) 
 
